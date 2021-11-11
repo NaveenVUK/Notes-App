@@ -6,6 +6,7 @@ import Home from "./Home"
 import Register from "./RegisterComponents/Register";
 import NotesContainor from "./NotesComponents/NotesContainor";
 import { AppBar, Box, CssBaseline, Grid, Toolbar, Typography } from "@material-ui/core";
+import ProtectedRoute from "../ProtectedRoute";
 
 
 
@@ -54,8 +55,10 @@ const UserAuthoContainer = (props)=>{
                 <Route path="/login" render = {()=>{
                     return <Login {...props} userLoggedStatus={userLoggedStatus}/>
                 }} exact/>
-                <Route path="/account" component={Account} exact/>
-                <Route path="/notes" component={NotesContainor} exact/>
+                {/* <Route path="/account" component={Account} exact/> */}
+                {/* <Route path="/notes" component={NotesContainor} exact/> */}
+                <ProtectedRoute path="/account" component={Account} auth={loggedIn}/>
+                <ProtectedRoute path="/notes" component={NotesContainor} auth={loggedIn}/>
             
         </div>
     )

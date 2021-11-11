@@ -1,5 +1,5 @@
 import React, { useEffect }  from "react";
-import {clearError, UserLogIn} from "../Actions/UserActions"
+import {clearError, UpdateError, UserLogIn} from "../Actions/UserActions"
 import {useDispatch, useSelector} from "react-redux"
 import { withRouter } from "react-router";
 import { useFormik } from "formik";
@@ -10,6 +10,14 @@ import Button from "@restart/ui/esm/Button";
 const Login = (props)=>{
    const {userLoggedStatus} = props
     const dispatch = useDispatch()
+
+    if(props.location.state){
+         const errorRouter = props.location.state.error
+         dispatch(UpdateError(errorRouter))
+    }
+   
+    // console.log("errorRouter",errorRouter);
+    // console.log("props", props);
    
     const validationSchema = yup.object(
         {
