@@ -2,94 +2,68 @@ import React, { useState} from "react";
 import {UserLogIn} from "../Actions/UserActions"
 import {useDispatch} from "react-redux"
 import { withRouter } from "react-router";
-import {Box, Button} from "@material-ui/core"
+import { useFormik } from "formik";
+import * as yup from "yup"
 import { TextField } from "@material-ui/core";
-
+import Button from "@restart/ui/esm/Button";
 
 const Login = (props)=>{
    const {userLoggedStatus} = props
     const dispatch = useDispatch()
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-
-    const handleSubmit = (e)=>{
-        e.preventDefault()
-        const formData = {
-            email : email,
-            password : password
+   
+    const validationSchema = yup.object(
+        {
+            email : yup.string().email("Enter valid email").required("Email Required"),
+            password : yup.string().required("Password is required")
         }
-        console.log(formData);
-        dispatch(UserLogIn(formData,userLoggedStatus,props))
-    }
-
-    const handlePasswordChange = (e)=>{
-        setPassword(e.target.value)
-    }
-
-    const handleEmailChange = (e)=>{
-        setEmail(e.target.value)
-    }
+    )
+    
+    const formik = useFormik({
+        initialValues : {
+            email : "",
+            password : ""
+        },
+        onSubmit : (values)=>{
+            dispatch(UserLogIn(values,userLoggedStatus,props))
+        },
+        validationSchema : validationSchema
+    })
 
 
     return (
         <div>
-            {/* <form onSubmit={handleSubmit} >
-                <br/>
-                <Inputfield 
-                    name="text" 
-                    value={email} 
-                    change={setEmail} 
-                    placeholder="Enter your Email"
-                /> <br/>
-                <Inputfield 
-                    name="password" 
-                    value={password} 
-                    change={setPassword} 
-                    placeholder="Enter your Password"
-                /><br/>
-                <input type="submit"/>
-            </form> */}
-        <Box
-            component="form"
-            sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-            textAlign="center"
-            className="textinput"
-            >
-            <div>
+            <form onSubmit={formik.handleSubmit}>
                 <TextField
-                id="filled-basic"
-                label="email"
-                value={email}
-                onChange={handleEmailChange}
-                placeholder="enter your email"
-                variant="filled"
+                    id = "email"
+                    name="email"
+                    lable="email"
+                    margin = "normal"
+                    value = {formik.values.email}
+                    onChange = {formik.handleChange}
+                    error = {formik.touched.email && Boolean(formik.touched.email)}
+                    helperText = {formik.touched.email && formik.errors.email}
                 />
-            </div>
                 <br/>
-            <div>
                 <TextField
-                id="filled-basic"
-                label="Password"
-                value={password}
-                onChange={handlePasswordChange}
-                placeholder="enter your Password"
-                variant="filled"
-                />
-            </div>
+                    id = "password"
+                    name="password"
+                    type="password"
+                    lable="password"
+                    margin = "normal"
+                    value = {formik.values.password}
+                    onChange = {formik.handleChange}
+                    error = {formik.touched.password && Boolean(formik.touched.password)}
+                    helperText = {formik.touched.password && formik.errors.password}
+                /> 
                 <br/>
-            <div>
-               <Button variant="contained" onClick={handleSubmit}>Log in</Button>
-            </div>
-    </Box>
+                <Button type="submit" variant="outlined"> Submit </Button>
+            </form>
         </div>
-        
     )
 }
 
 
 const newLogin = withRouter(Login)
 export default newLogin
+
+

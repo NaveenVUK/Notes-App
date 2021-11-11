@@ -16,7 +16,7 @@ const AddNoteForm = (props)=>{
             title : title,
             body : textBody
         }
-        formSubmit(noteFormData,NoteFormClear,)
+        formSubmit(noteFormData,NoteFormClear)
         
     }
 

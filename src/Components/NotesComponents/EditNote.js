@@ -2,30 +2,23 @@ import React from "react";
 import AddNoteForm from "./AddNoteForm";
 import { StartUpdateNote } from "../../Actions/NotesActions";
 import { useDispatch } from "react-redux";
-import { withRouter } from "react-router";
 
 const EditNote = (props)=>{
     const dispatch = useDispatch()
-    const {data,handleToggle} = props
-
-
+    const {id, title, body ,editToggleChange} = props
 
     const formSubmit=(noteFormData,NoteFormClear)=>{
-        const newData = {...noteFormData, id : data._id}
-        console.log(newData);
-        handleToggle()
+        const newData = {...noteFormData, id : id}
+        editToggleChange()
         dispatch(StartUpdateNote(newData,NoteFormClear))
     }
-
-
 
     return (
         <div>
             <h1> EditNote</h1>
-            <AddNoteForm  handleToggle={handleToggle} formSubmit={formSubmit} id={data._id} heading={data.title} text={data.body}/>
+            <AddNoteForm  handleToggle={editToggleChange} formSubmit={formSubmit} id={id} heading={title} text={body}/>
         </div>
     )
 }
 
-const newData = withRouter(EditNote)
-export default newData 
+export default EditNote 

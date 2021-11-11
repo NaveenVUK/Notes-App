@@ -31,8 +31,6 @@ export const AddNoteinRedux = (data)=>{
     }
 }
 
-
-
 export const StartGetNote = (props)=>{
     return (dispatch)=>{
         axios.get("http://dct-user-auth.herokuapp.com/api/notes",{
