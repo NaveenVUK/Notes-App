@@ -2,7 +2,6 @@ import { Container, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../Actions/UserActions";
-import Paragraf from "./ReusableComponets/Paragraf";
 
 const Account = ()=>{
     const dispatch = useDispatch()

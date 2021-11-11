@@ -28,7 +28,6 @@ const AddNoteForm = (props)=>{
     return (
         <form onSubmit={handleSubmite}>
             <Inputfeild name="text" sta={title} change={setTitle} placeholder="Title"/><br/>
-            {/* <input type="text" value={title} onChange={handleTitleChange}placeholder="Title"/> */}
             <textarea placeholder="body" value={textBody} onChange={handleBodyChange} /> <br/>
             <input type="submit" value="Save"/>
         </form>

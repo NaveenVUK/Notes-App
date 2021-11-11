@@ -1,5 +1,4 @@
 import React, { useState} from "react";
-import Inputfield from "./ReusableComponets/Inputfield"
 import {UserLogIn} from "../Actions/UserActions"
 import {useDispatch} from "react-redux"
 import { withRouter } from "react-router";
@@ -12,7 +11,6 @@ const Login = (props)=>{
     const dispatch = useDispatch()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [Age, setAge] = useState("")
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -65,28 +63,21 @@ const Login = (props)=>{
                 <TextField
                 id="filled-basic"
                 label="email"
-                // defaultValue=""
                 value={email}
                 onChange={handleEmailChange}
                 placeholder="enter your email"
-                value = {email}
                 variant="filled"
-                // onChange={handleAgeChange}
                 />
             </div>
                 <br/>
             <div>
                 <TextField
-                // password
                 id="filled-basic"
                 label="Password"
-                // defaultValue=""
                 value={password}
                 onChange={handlePasswordChange}
                 placeholder="enter your Password"
-                value = {password}
                 variant="filled"
-                // onChange={handleAgeChange}
                 />
             </div>
                 <br/>

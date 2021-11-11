@@ -2,7 +2,6 @@ import React from "react";
 
 const Home = ()=>{
 
-    const data = [{id:1,name:"kedu"},{id:2,name:"Naveen"},{id:3,name:"Harish"},{id:4,name:"Sony"}]
 
     return (
         <>

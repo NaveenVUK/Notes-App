@@ -4,13 +4,6 @@ const initialState = []
 const NotesReducers = (state=initialState, action)=>{
     switch(action.type){
         case "ADD-NOTE" : {
-            // action.payload.map((ele)=>{
-            //     if(Object.values(state).includes(ele._id)){
-            //         return [...state]
-            //     }else{
-            //          return [...state, {...action.payload}]
-            //     }
-            // })
              return [...action.payload]
         }
         case "ADD-NOTE-REDUX":{
