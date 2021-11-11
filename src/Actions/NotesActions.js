@@ -1,7 +1,7 @@
 import axios from "axios"
 
 
-export const StartAddNote = (noteFormData,NoteFormClear)=>{
+export const StartAddNote = (noteFormData)=>{
     return (dispatch)=>{
         axios.post('http://dct-user-auth.herokuapp.com/api/notes', noteFormData, {
                 headers : {
@@ -13,7 +13,7 @@ export const StartAddNote = (noteFormData,NoteFormClear)=>{
                 if(data.hasOwnProperty("errors")){
                     alert(data.error)
                 } else{
-                    NoteFormClear()
+                    // NoteFormClear()
                     alert("Note has been updated!!")
                     dispatch(AddNoteinRedux(data))
                 }
@@ -87,7 +87,7 @@ export const deletNote = (note)=>{
     }
 }
 
-export const StartUpdateNote = (noteFormData,NoteFormClear)=>{
+export const StartUpdateNote = (noteFormData,)=>{
     return (dispatch)=>{
         axios.put(`http://dct-user-auth.herokuapp.com/api/notes/${noteFormData.id}`,noteFormData,{
             headers : {
@@ -100,7 +100,7 @@ export const StartUpdateNote = (noteFormData,NoteFormClear)=>{
                 alert(result.errros)
             }else{
                 dispatch(updateNote(result))
-                NoteFormClear()
+                // NoteFormClear()
             }
         })
         .catch((error)=>{

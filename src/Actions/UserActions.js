@@ -7,9 +7,9 @@ export const StartUserUpdate = (formData,clearForm,props)=>{
           axios.post("http://dct-user-auth.herokuapp.com/users/register",formData)
             .then((response)=>{
                 const result = response.data
-                console.log(result);
+                // console.log(result.message)
                 if(result.hasOwnProperty('errors')){
-                    alert(result.message)
+                    dispatch(UpdateError(result.message))
                 }else{
                     alert("Successfully created an account")
                     clearForm()
@@ -27,9 +27,10 @@ export const UserLogIn = (formData,userLoggedStatus,props)=>{
         axios.post("http://dct-user-auth.herokuapp.com/users/login",formData)
             .then((response)=>{
                 const result1 = response.data
-                console.log(result1);
+                console.log(result1.errors);
                 if(result1.hasOwnProperty("errors")){
-                    alert(result1.errors)
+                    // alert(result1.errors)
+                    dispatch(UpdateError(result1.errors))
                 } else{
                     localStorage.setItem('token', result1.token)
                     alert("Successfully logged in")
@@ -71,14 +72,14 @@ export const CreateUser = (user)=>{
     }
 }
 
-// export const userloggedIn = ()=>{
-//     return{
-//         type: "USER-LOG-IN" 
-//     }
-// }
-
-// export const userLoggedOut = ()=>{
-//     return {
-//         type : "USER-LOGGED-OUT"
-//     }
-// }
+export const UpdateError = (error)=>{
+    return {
+        type : "UPDATE_ERROR",
+        payload : error
+    }
+}
+export const clearError = ()=>{
+    return {
+        type : "CLEAR_ERROR",
+    }
+}

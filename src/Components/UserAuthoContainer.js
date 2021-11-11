@@ -5,7 +5,7 @@ import Account from "./Account";
 import Home from "./Home"
 import Register from "./RegisterComponents/Register";
 import NotesContainor from "./NotesComponents/NotesContainor";
-import { AppBar, Box, CssBaseline, Toolbar } from "@material-ui/core";
+import { AppBar, Box, CssBaseline, Grid, Toolbar, Typography } from "@material-ui/core";
 
 
 
@@ -26,27 +26,28 @@ const UserAuthoContainer = (props)=>{
     return (
         <div>
             <CssBaseline/>
-            <AppBar position="relative"> 
-            <Toolbar >
-                <Link to="/"> Home </Link> |
-                {loggedIn ? (
-                    <>
-                    <Box> <Link to="/account"> Account </Link>|</Box>
-                        
-                        <Link to="/notes"> My notes </Link>|
-                        <Link to="/" onClick={()=>{
-                            localStorage.clear()
-                            alert("Successfully Logged Out")
-                            userLoggedStatus()
-                        }}> Logout </Link>|
-                    </>
-                ):(
-                    <>
-                        <Link to="/register"> Register </Link>|
-                        <Link to="/login"> Login </Link>
-                    </>           
-                )}
-            </Toolbar>
+            <AppBar position="static"> 
+                <Toolbar >
+                    <Typography variant="h2" component="div"> User Auth </Typography>
+                    <Link to="/"> Home </Link> |
+                    {loggedIn ? (
+                        <>
+                        <Box> <Link to="/account"> Account </Link>|</Box>
+                            
+                            <Link to="/notes"> My notes </Link>|
+                            <Link to="/" onClick={()=>{
+                                localStorage.clear()
+                                alert("Successfully Logged Out")
+                                userLoggedStatus()
+                            }}> Logout </Link>|
+                        </>
+                    ):(
+                        <>
+                            <Link to="/register"> Register </Link>|
+                            <Link to="/login"> Login </Link>
+                        </>           
+                    )}
+                </Toolbar>
             </AppBar>
                 <Route path="/register" component={Register} exact/>
                 <Route path="/" component={Home} exact/>

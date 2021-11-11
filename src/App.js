@@ -10,13 +10,13 @@ const App = ()=>{
 
   return (
     <div>
-      <CssBaseline/>
+      {/* <CssBaseline/>
       <AppBar position="relative">
         <Toolbar>
           <PhotoCamera/>
              <Typography variant="h2"> New User Auth </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <UserAuthoContainer/>
     </div>
   )

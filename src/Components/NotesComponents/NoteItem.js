@@ -20,6 +20,10 @@ const NoteItem = (props)=>{
         setEditToggle(result)
     }
 
+    const handleTitleClick = ()=>{
+        alert(`${title} - ${body}`)
+    }
+
     return(
         <div>
             {editToggle ? (
@@ -29,7 +33,7 @@ const NoteItem = (props)=>{
                 </>
             ):(
                 <>
-                    <li> {title} </li>
+                    <li onClick={handleTitleClick}> {title} </li>
                     <button onClick={editToggleChange}> Edit </button>
                     <button onClick={handleRemoveClick}> Delete </button>
                 </>

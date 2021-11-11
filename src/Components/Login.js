@@ -1,6 +1,6 @@
-import React, { useState} from "react";
-import {UserLogIn} from "../Actions/UserActions"
-import {useDispatch} from "react-redux"
+import React, { useEffect }  from "react";
+import {clearError, UserLogIn} from "../Actions/UserActions"
+import {useDispatch, useSelector} from "react-redux"
 import { withRouter } from "react-router";
 import { useFormik } from "formik";
 import * as yup from "yup"
@@ -17,7 +17,19 @@ const Login = (props)=>{
             password : yup.string().required("Password is required")
         }
     )
-    
+
+    useEffect(()=>{
+        dispatch(clearError())
+    },[])
+
+    const error = useSelector((state)=>{
+        return state.users.errors
+    })
+
+    const clearErrors = ()=>{
+        dispatch(clearError())
+    }
+
     const formik = useFormik({
         initialValues : {
             email : "",
@@ -32,15 +44,16 @@ const Login = (props)=>{
 
     return (
         <div>
+            <p style={{color:"red"}}> {error} </p>
             <form onSubmit={formik.handleSubmit}>
                 <TextField
                     id = "email"
                     name="email"
-                    lable="email"
+                    label="email"
                     margin = "normal"
                     value = {formik.values.email}
                     onChange = {formik.handleChange}
-                    error = {formik.touched.email && Boolean(formik.touched.email)}
+                    error = {formik.touched.email && Boolean(formik.errors.email)}
                     helperText = {formik.touched.email && formik.errors.email}
                 />
                 <br/>
@@ -48,15 +61,19 @@ const Login = (props)=>{
                     id = "password"
                     name="password"
                     type="password"
-                    lable="password"
+                    label="password"
                     margin = "normal"
                     value = {formik.values.password}
                     onChange = {formik.handleChange}
-                    error = {formik.touched.password && Boolean(formik.touched.password)}
+                    error = {formik.touched.password && Boolean(formik.errors.password)}
                     helperText = {formik.touched.password && formik.errors.password}
                 /> 
                 <br/>
                 <Button type="submit" variant="outlined"> Submit </Button>
+                <Button onClick = {()=>{
+                    clearErrors()
+                    formik.resetForm()
+                }}> Reset </Button>
             </form>
         </div>
     )

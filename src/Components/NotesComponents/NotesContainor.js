@@ -17,8 +17,8 @@ const NotesContainor = ()=>{
     
     
 
-    const formSubmit=(noteFormData,NoteFormClear)=>{
-        dispatch(StartAddNote(noteFormData,NoteFormClear))
+    const formSubmit=(noteFormData)=>{
+        dispatch(StartAddNote(noteFormData))
     }
 
     return (
