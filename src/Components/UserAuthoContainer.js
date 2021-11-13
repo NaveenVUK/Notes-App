@@ -5,9 +5,22 @@ import Account from "./Account";
 import Home from "./Home"
 import Register from "./RegisterComponents/Register";
 import NotesContainor from "./NotesComponents/NotesContainor";
-import { AppBar, Box, CssBaseline, Grid, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Box, CssBaseline, Toolbar, Typography ,Button} from "@material-ui/core";
 import ProtectedRoute from "../ProtectedRoute";
+import { makeStyles } from "@material-ui/core/styles";
+import swal from "sweetalert";
 
+const useStyle = makeStyles({
+    root : {
+        flexGrow : 1,
+        marginTop:"5px",
+        marginBottom : "5px",
+    },
+    linkStyle : {
+       color : "#fafafa",
+       textDecoration : "none"
+    }
+})
 
 
 const UserAuthoContainer = (props)=>{
@@ -22,30 +35,46 @@ const UserAuthoContainer = (props)=>{
         localStorage.getItem("token") && userLoggedStatus()
     },[])
 
+    const classes = useStyle()
 
+    const logoutMsg = ()=>{
+        swal("Great", "you Have Successfully logged out!!", "success");
+    }
 
     return (
         <div>
             <CssBaseline/>
             <AppBar position="static"> 
                 <Toolbar >
-                    <Typography variant="h2" component="div"> User Auth </Typography>
-                    <Link to="/"> Home </Link> |
+                    <Typography variant="h2" component="div" className={classes.root}> User Auth </Typography>
+                    <Button color="inherit">
+                        <Link to="/" className={classes.linkStyle}> Home </Link> 
+                    </Button>
                     {loggedIn ? (
                         <>
-                        <Box> <Link to="/account"> Account </Link>|</Box>
-                            
-                            <Link to="/notes"> My notes </Link>|
+                        <Button color="inherit">
+                            <Link to="/account" className={classes.linkStyle}> Account </Link>
+                        </Button>
+                        <Button>
+                             <Link to="/notes"  className={classes.linkStyle}> My notes </Link>
+                        </Button>
+                        <Button>
                             <Link to="/" onClick={()=>{
-                                localStorage.clear()
-                                alert("Successfully Logged Out")
-                                userLoggedStatus()
-                            }}> Logout </Link>|
+                                    localStorage.clear()
+                                    userLoggedStatus()
+                                    logoutMsg()
+                                    // alert("Successfully Logged Out")
+                                }}  className={classes.linkStyle}> Logout </Link>
+                        </Button>
                         </>
                     ):(
                         <>
-                            <Link to="/register"> Register </Link>|
-                            <Link to="/login"> Login </Link>
+                        <Button>
+                              <Link to="/register"  className={classes.linkStyle}> Register </Link>
+                        </Button>
+                        <Button>
+                              <Link to="/login"  className={classes.linkStyle}> Login </Link>
+                        </Button>
                         </>           
                     )}
                 </Toolbar>
@@ -55,8 +84,6 @@ const UserAuthoContainer = (props)=>{
                 <Route path="/login" render = {()=>{
                     return <Login {...props} userLoggedStatus={userLoggedStatus}/>
                 }} exact/>
-                {/* <Route path="/account" component={Account} exact/> */}
-                {/* <Route path="/notes" component={NotesContainor} exact/> */}
                 <ProtectedRoute path="/account" component={Account} auth={loggedIn}/>
                 <ProtectedRoute path="/notes" component={NotesContainor} auth={loggedIn}/>
             

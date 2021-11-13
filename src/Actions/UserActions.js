@@ -1,5 +1,6 @@
 import axios from "axios"
 import { StartGetNote } from "./NotesActions"
+import swal from "sweetalert"
 
 
 export const StartUserUpdate = (formData,clearForm,props)=>{
@@ -11,7 +12,8 @@ export const StartUserUpdate = (formData,clearForm,props)=>{
                 if(result.hasOwnProperty('errors')){
                     dispatch(UpdateError(result.message))
                 }else{
-                    alert("Successfully created an account")
+                    // alert("Successfully created an account")
+                    swal("Successfully created an account !!")
                     clearForm()
                     props.history.push('/login')
                 }

@@ -2,7 +2,6 @@ import React from "react";
 import AddNoteForm from "./AddNoteForm";
 import { StartUpdateNote } from "../../Actions/NotesActions";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
 
 const EditNote = (props)=>{
     const dispatch = useDispatch()

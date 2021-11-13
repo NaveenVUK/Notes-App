@@ -7,7 +7,6 @@ const Register = (props)=>{
 
     return (
         <div>
-            <Heading name="h1" title="Register with us"/>
             <RegisterForm props={props}/>
         </div>
     )

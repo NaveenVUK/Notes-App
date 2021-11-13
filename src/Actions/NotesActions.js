@@ -1,4 +1,5 @@
 import axios from "axios"
+import swal from "sweetalert"
 
 
 export const StartAddNote = (noteFormData)=>{
@@ -13,8 +14,7 @@ export const StartAddNote = (noteFormData)=>{
                 if(data.hasOwnProperty("errors")){
                     alert(data.error)
                 } else{
-                    // NoteFormClear()
-                    alert("Note has been updated!!")
+                    swal("Note has been updated !!")
                     dispatch(AddNoteinRedux(data))
                 }
             })

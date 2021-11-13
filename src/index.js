@@ -4,7 +4,7 @@ import App from './App';
 import ConfigureStore from "./Store/ConfigureStore"
 import {Provider} from "react-redux"
 import { BrowserRouter } from 'react-router-dom';
-import "../src/App.css"
+import "./App.css"
 
 const store=  ConfigureStore()
 
@@ -16,7 +16,7 @@ store.subscribe(()=>{
 ReactDOM.render(
   <BrowserRouter>
   <Provider store={store}>
-    <App />
+      <App/>
   </Provider>
     </BrowserRouter>,
   document.getElementById('root')

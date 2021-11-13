@@ -1,22 +1,13 @@
 import React from "react";
 import UserAuthoContainer from "./Components/UserAuthoContainer"
-import {AppBar, CssBaseline, Toolbar, Typography} from "@material-ui/core"
-import {PhotoCamera} from "@material-ui/icons"
-
+import bgimage from "./Components/bgimage.jpg"
 
 
 const App = ()=>{
 
 
   return (
-    <div>
-      {/* <CssBaseline/>
-      <AppBar position="relative">
-        <Toolbar>
-          <PhotoCamera/>
-             <Typography variant="h2"> New User Auth </Typography>
-        </Toolbar>
-      </AppBar> */}
+    <div className="app">
       <UserAuthoContainer/>
     </div>
   )

@@ -4,12 +4,18 @@ import DisplayNote from "./DisplayNote";
 import { useDispatch } from "react-redux";
 import { StartAddNote } from "../../Actions/NotesActions";
 import Grid from "@material-ui/core/Grid"
-import Paper from "@material-ui/core/Paper"
 import { StartGetNote } from "../../Actions/NotesActions";
+import { makeStyles } from "@material-ui/styles";
 
+const useStyles = makeStyles({
+    gridStyle : {
+        marginTop : "20px",
+    }
+})
 
 const NotesContainor = ()=>{
     const dispatch = useDispatch()
+    const classes = useStyles()
 
     useEffect(()=>{
         dispatch(StartGetNote())
@@ -22,13 +28,13 @@ const NotesContainor = ()=>{
     }
 
     return (
-        <div>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                    <Paper> <DisplayNote/> </Paper>
+        <div className="notesStyle">
+            <Grid container spacing={1}>
+                <Grid item xs={12} md={8} className = {classes.gridStyle}>
+                    <DisplayNote/>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <Paper> <AddNoteForm formSubmit={formSubmit}/> </Paper>
+                <Grid item xs={12} md={4} className = {classes.gridStyle}>
+                    <AddNoteForm formSubmit={formSubmit}/>
                 </Grid>
             </Grid>
         </div>
@@ -37,3 +43,4 @@ const NotesContainor = ()=>{
 }
 
 export default NotesContainor
+
