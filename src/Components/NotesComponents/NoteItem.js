@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/styles";
 import { Button, Typography } from "@material-ui/core";
 import { DeleteRounded } from "@material-ui/icons";
 import { Edit } from "@material-ui/icons";
-import swal from "sweetalert";
+import swal from "@sweetalert/with-react"
 
 const useStyles = makeStyles({
     formStyle : {
@@ -58,7 +58,15 @@ const NoteItem = (props)=>{
     }
 
     const handleTitleClick = ()=>{
-        alert(`${title} - ${body}`)
+        // alert(`${title} - ${body}`)
+        return (
+            swal(
+                <div>
+                    <h1> {title} </h1> 
+                    <p> {body} </p>
+                </div>
+            )
+        )
     }
     
     return(

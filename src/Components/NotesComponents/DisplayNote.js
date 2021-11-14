@@ -14,8 +14,7 @@ const useStyles = makeStyles({
         boxShadow : "0px 0px 12px -3px #000000",
         display : "fles",
         justifyContent : "space-between",
-        backgroundColor : '#fffde7',
-        
+        backgroundColor : '#fffde7',        
     },
     headingStyle : {
         textAlign : "center"
