@@ -9,7 +9,7 @@ const useStyles = makeStyles({
         // margin : "0px auto",
         padding : "30px",
         borderRadius : "9px",
-        boxShadow : "0px 0px 12px -3px #000000",
+        // boxShadow : "0px 0px 12px -3px #000000",
         // display : "fles",
         // justifyContent : "space-between",
         backgroundColor : "#c8e6c9",

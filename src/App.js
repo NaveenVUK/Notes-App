@@ -3,12 +3,11 @@ import UserAuthoContainer from "./Components/UserAuthoContainer"
 import bgimage from "./Components/bgimage.jpg"
 
 
-const App = ()=>{
-
+const App = () => {
 
   return (
     <div className="app">
-      <UserAuthoContainer/>
+      <UserAuthoContainer />
     </div>
   )
 }

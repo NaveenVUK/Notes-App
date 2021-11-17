@@ -14,7 +14,7 @@ const useStyles = makeStyles({
         padding : "30px",
         borderRadius : "9px",
         boxShadow : "0px 0px 12px -3px #000000",
-        display : "fles",
+        // display : "fles",
         justifyContent : "space-between",
         color : "blue",
         backgroundColor : '#e8f5e9',

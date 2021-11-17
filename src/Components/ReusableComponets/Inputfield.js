@@ -1,18 +1,18 @@
 import React from "react";
 
-const Inputfeild = (props)=>{
+const Inputfeild = (props) => {
 
-    const handleInputChange = (e)=>{
+    const handleInputChange = (e) => {
         props.change(e.target.value)
     }
 
     return (
         <div>
-            <input 
-                type={props.name} 
-                value={props.sta} 
+            <input
+                type={props.name}
+                value={props.sta}
                 // onChange={(e)=>(props.change(e.target.value))} 
-                onChange = {(e)=>(
+                onChange={(e) => (
                     handleInputChange(e)
                 )}
                 placeholder={props.placeholder}
